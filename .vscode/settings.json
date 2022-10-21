@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"std_types.h": "c",
+		"dio_interface.h": "c",
+		"dio_private.h": "c",
+		"bitmath.h": "c"
+	}
+}

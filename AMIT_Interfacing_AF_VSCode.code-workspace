@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"std_types.h": "c",
+			"dio_interface.h": "c",
+			"dio_private.h": "c",
+			"bitmath.h": "c",
+			"lcd_interface.h": "c",
+			"delay.h": "c"
+		}
+	}
+}
