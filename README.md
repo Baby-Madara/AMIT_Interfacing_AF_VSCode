@@ -5,8 +5,8 @@ it is based on Software Archeticture:
 
 
 
--[ ] APP :                main.c
--[ ] HAL :      Buttons - LEDs - SevenSeg - LCD
--[ ] MCAL:    DIO - 
+- [ ] APP :                main.c
+- [ ] HAL :      Buttons - LEDs - SevenSeg - LCD
+- [ ] MCAL:    DIO - 
 
 [] UTILS: bitMath - STDTypes  
