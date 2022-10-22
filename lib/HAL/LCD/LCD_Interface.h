@@ -32,7 +32,7 @@
 typedef enum LCD_cmdSet{
 	LCD_clr			= 0x01,
 	LCD_4bit_mode 	= 0x22,
-	LCD_DDRAM_addr	= 0x80
+	LCD_DDRAM_addr	= 0x80	// 1000 0000
 	
 	// LCD_Init_4bit_57_2line_cursor_off_blink_off,
 

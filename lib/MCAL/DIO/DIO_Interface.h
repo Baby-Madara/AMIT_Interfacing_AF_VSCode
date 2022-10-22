@@ -4,8 +4,11 @@
 #include "DIO_Private.h"
 #include <BitMath.h>
 
-#define INPUT  	0
-#define OUTPUT 	1
+#define INPUT  			0
+#define INPUT_NOPULLUP	0
+
+#define OUTPUT 			1
+#define INPUT_PULLUP	2
 
 #define DIO_A	0
 #define DIO_B	1
@@ -63,16 +66,16 @@
 void DIO_VoidPinMode			(u8 port, u8 pin, 	u8 mode	);
 void DIO_VoidDigitalWritePin	(u8 port, u8 pin, 	u8 val	);
 void DIO_VoidDigitalTogglePin	(u8 port, u8 pin			);
-u8   DIO_U8DigitalReadPin		(u8 port, u8 pin			);
+u8   DIO_u8DigitalReadPin		(u8 port, u8 pin			);
+u8   DIO_u8ReturnOutputValue	(u8 port, u8 pin			);
 
 
 void DIO_VoidPortMode			(u8 port,		 	u8 mode	);
 void DIO_VoidDigitalWritePort	(u8 port,		 	u8 val	);
 void DIO_VoidDigitalTogglePort	(u8 port					);
-u8   DIO_U8DigitalReadPort		(u8 port					);
-u8   DIO_U8DigitalReadPort		(u8 port					);
-u8   DIO_U8DigitalReadPort		(u8 port					);
-
+u8   DIO_u8DigitalReadPort		(u8 port					);
+u8   DIO_u8DigitalReadPort		(u8 port					);
+u8   DIO_u8DigitalReadPort		(u8 port					);
 
 
 

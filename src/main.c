@@ -1,6 +1,7 @@
 
 
 #include <LCD/LCD_Interface.h>
+#include <KeyPad/KeyPad.h>
 
 
 
@@ -8,6 +9,9 @@
 int main(){
 	
 	LCD_voidInit();
+	KeyPad_voidInit();
+
+	volatile u8 read='N';
 
 
 
@@ -15,14 +19,10 @@ int main(){
 
 
 while(1){
-	LCD_voidWriteString("Ahmed ");		_delay_ms(1000);
-	LCD_voidWriteString("Farahat ");	_delay_ms(1000);
-	LCD_voidGoTo(0,2);
-
-	LCD_voidWriteString("Ahmed ");		_delay_ms(1000);
-	LCD_voidClear();					_delay_ms(1000);
-	LCD_voidWriteFloat(1.5,4);			_delay_ms(2000);
-	LCD_voidClear();					_delay_ms(1000);
+	read = KeyPad_u8GetRead();
+	LCD_voidGoTo(0,0);
+	LCD_voidWriteData(read);
+	_delay_ms(10);
 	
 }
 }

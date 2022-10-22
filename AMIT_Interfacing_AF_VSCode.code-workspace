@@ -11,7 +11,8 @@
 			"dio_private.h": "c",
 			"bitmath.h": "c",
 			"lcd_interface.h": "c",
-			"delay.h": "c"
+			"delay.h": "c",
+			"keypad.h": "c"
 		}
 	}
 }

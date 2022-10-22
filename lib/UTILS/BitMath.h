@@ -3,7 +3,7 @@
 
 #define SET_REG(reg)	(reg =  0xFF)
 #define CLEAR_REG(reg)	(reg =  0x00)
-#define TOGGLE_REG(reg)	(reg ^= reg )
+#define TOGGLE_REG(reg)	(reg = ~reg )
 
 
 #define SET_BIT(	reg, bit)	(reg |= (1<<bit))

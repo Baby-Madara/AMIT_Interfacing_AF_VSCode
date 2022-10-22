@@ -3,16 +3,14 @@
 void DIO_VoidPinMode		(u8 port, u8 pin, u8 mode	){
 	if(port <4){
 		if(pin <8){
-
 			switch(mode){
 				case INPUT:{
 					switch(port){
-						case DIO_A:{	CLEAR_BIT(DDRA, pin);	}break;
-						case DIO_B:{	CLEAR_BIT(DDRB, pin);	}break;
-						case DIO_C:{	CLEAR_BIT(DDRC, pin);	}break;
-						case DIO_D:{	CLEAR_BIT(DDRD, pin);	}break;
+						case DIO_A:{	CLEAR_BIT(DDRA, pin);	CLEAR_BIT(PORTA, pin);}break;
+						case DIO_B:{	CLEAR_BIT(DDRB, pin);	CLEAR_BIT(PORTB, pin);}break;
+						case DIO_C:{	CLEAR_BIT(DDRC, pin);	CLEAR_BIT(PORTC, pin);}break;
+						case DIO_D:{	CLEAR_BIT(DDRD, pin);	CLEAR_BIT(PORTD, pin);}break;
 					}
-
 				}break;
 				case OUTPUT:{
 					switch(port){
@@ -20,6 +18,14 @@ void DIO_VoidPinMode		(u8 port, u8 pin, u8 mode	){
 						case DIO_B:{	SET_BIT(DDRB, pin);	}break;
 						case DIO_C:{	SET_BIT(DDRC, pin);	}break;
 						case DIO_D:{	SET_BIT(DDRD, pin);	}break;
+					}
+				}break;
+				case INPUT_PULLUP:{
+					switch(port){
+						case DIO_A:{	CLEAR_BIT(DDRA, pin);	SET_BIT(PORTA, pin);}break;
+						case DIO_B:{	CLEAR_BIT(DDRB, pin);	SET_BIT(PORTB, pin);}break;
+						case DIO_C:{	CLEAR_BIT(DDRC, pin);	SET_BIT(PORTC, pin);}break;
+						case DIO_D:{	CLEAR_BIT(DDRD, pin);	SET_BIT(PORTD, pin);}break;
 					}
 				}break;
 			}
@@ -80,10 +86,8 @@ void DIO_VoidDigitalTogglePin	(u8 port, u8 pin		){
 
 
 
-u8   DIO_U8DigitalReadPin		(u8 port, u8 pin		){
+u8   DIO_u8DigitalReadPin		(u8 port, u8 pin		){
 	volatile bool val=0;
-	
-
 	switch(port){
 		case DIO_A:{	val=	GET_BIT(PINA, pin);	}break;
 		case DIO_B:{	val=	GET_BIT(PINB, pin);	}break;
@@ -95,6 +99,20 @@ u8   DIO_U8DigitalReadPin		(u8 port, u8 pin		){
 	
 	
 	return val;
+}
+
+
+
+u8   DIO_u8ReturnOutputValue	(u8 port, u8 pin			){
+	volatile u8 val;
+	switch (port){
+		case DIO_A: {	val= 	GET_BIT(PORTA, pin); }break;
+		case DIO_B: {	val= 	GET_BIT(PORTB, pin); }break;
+		case DIO_C: {	val= 	GET_BIT(PORTC, pin); }break;
+		case DIO_D: {	val= 	GET_BIT(PORTD, pin); }break;
+	}
+	return val;
+
 }
 
 
@@ -157,7 +175,7 @@ void DIO_VoidDigitalTogglePort	(u8 port			){
 	}
 }
 
-u8   DIO_U8DigitalReadPort		(u8 port			){
+u8   DIO_u8DigitalReadPort		(u8 port			){
 	volatile u8 val;
 
 	switch (port)
