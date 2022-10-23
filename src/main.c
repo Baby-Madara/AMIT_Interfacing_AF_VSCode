@@ -11,7 +11,8 @@ int main(){
 	LCD_voidInit();
 	KeyPad_voidInit();
 
-	volatile u8 read='N';
+	volatile u8 prevRead	=0,
+				currentRead	=0;
 
 
 
@@ -19,10 +20,12 @@ int main(){
 
 
 while(1){
-	read = KeyPad_u8GetRead();
-	LCD_voidGoTo(0,0);
-	LCD_voidWriteData(read);
+	currentRead = KeyPad_u8GetRead();
+	if(prevRead != currentRead){
+		LCD_voidWriteData(currentRead);
+	}
 	_delay_ms(10);
+	prevRead = currentRead;
 	
 }
 }
