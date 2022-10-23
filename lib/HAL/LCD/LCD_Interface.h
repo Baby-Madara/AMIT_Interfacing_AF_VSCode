@@ -1,11 +1,13 @@
 #ifndef LCD_INTERFACE_H_INCLUDED
 #define LCD_INTERFACE_H_INCLUDED
 
-#include <util/delay.h>
-#include <string.h>
+// #include <string.h>
+
+#include "../MCAL/DIO/DIO_Interface.h"
+
 #include "STD_Types.h"
 #include "BitMath.h"
-#include "../MCAL/DIO/DIO_Interface.h"
+#include <util/delay.h>
 
 #define LCD_RS	DIO_B1
 #define LCD_RW	DIO_B2

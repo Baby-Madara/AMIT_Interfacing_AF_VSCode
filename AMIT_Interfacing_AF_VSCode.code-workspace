@@ -12,7 +12,8 @@
 			"bitmath.h": "c",
 			"lcd_interface.h": "c",
 			"delay.h": "c",
-			"keypad.h": "c"
+			"keypad.h": "c",
+			"string.h": "c"
 		}
 	}
 }
