@@ -1,6 +1,6 @@
 /**
  * @author			Ahmed Farahat : @Baby-Madara ahmed.farahat1@msa.edu.eg - ahmedfarahat1177@gmail.com
- * @details			ATMega32 drivers for AMIT Kit with the following hardware (in the HAL layer)
+ * @details			ATMega32 drivers for AMIT Kit with the following hardware (in the HAL layer). Using PlatformIO as IDE on VS Code
  * @aknowledgement:	learned embedded systems interfacing from different instructors but special thanks for Moatasem El-Sayed & Sara Abd Rabbo
 // ***************************************** Software Architecture ***************************************** //
 	  UTILS 		||	APP		|					main.c
