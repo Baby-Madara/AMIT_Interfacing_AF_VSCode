@@ -1,3 +1,17 @@
+/**
+ * @author			Ahmed Farahat : @Baby-Madara ahmed.farahat1@msa.edu.eg - ahmedfarahat1177@gmail.com
+ * @details			ATMega32 drivers for AMIT Kit with the following hardware (in the HAL layer)
+ * @aknowledgement:	learned embedded systems interfacing from different instructors but special thanks for Moatasem El-Sayed & Sara Abd Rabbo
+// ***************************************** Software Architecture ***************************************** //
+	  UTILS 		||	APP		|					main.c
+					|| 	HAL		|	LEDs - Buttons - SevenSegmrnt - LCD - KeyPad - ...
+	STD_Types		|| 	MCAL	|			DIO - Interrupts - Timers - ...
+	BIT_MATH		|| 	MEM_MAP	|				memory registers
+					||
+					||
+// ******************************************************************************************************** //
+
+*/
 
 
 #include <LCD/LCD_Interface.h>
@@ -29,6 +43,8 @@ while(1){
 	
 }
 }
+
+
 
 
 
