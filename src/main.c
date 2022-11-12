@@ -97,6 +97,47 @@
 
 
 
+
+
+
+#ifdef TESTING_EX_INTERRUPTS		/////////////////////
+u8 i=0;
+
+void myISR0(void){	 
+	EX_Int0_Disable();
+	LED_ToggleLED(LED0);		
+	EX_Int0_Enable();
+}
+
+
+int main(){
+
+	LCD_Init();
+
+	LED_InitLED(LED0);
+	LED_InitLED(LED1);
+
+	EX_Int0_Init(EX_INT0_FALLING);
+	EX_Int0_SetCallBack(myISR0);
+
+
+
+while (1){
+	LED_ToggleLED(LED1); 	_delay_ms(100);
+
+}
+}
+
+#endif
+
+
+
+
+
+
+
+
+
 #ifdef TESTING_ADC					/////////////////////
 
 int main(){
@@ -111,61 +152,6 @@ while (1)
 	ADC_Read(2);
 }
 }
-#endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#ifdef TESTING_EX_INTERRUPTS		/////////////////////
-
-u8 i=0;
-
-void myISR0(void){	 
-	EX_Int0_Disable();
-	LED_ToggleLED(LED0);		
-	EX_Int0_Enable();
-}
-
-// void myISR1(void){	 
-// 	EX_Int1_Disable();
-// 	LED_ToggleLED(LED1);
-// 	// i++;		
-// 	EX_Int1_Enable();
-// }
-
-
-int main(){
-
-	LCD_Init();
-
-	LED_InitLED(LED0);
-	LED_InitLED(LED1);
-
-	EX_Int0_Init(EX_INT0_FALLING);
-	EX_Int0_SetCallBack(myISR0);
-
-	// EX_Int1_Init(EX_INT1_FALLING);
-	// EX_Int1_SetCallBack(myISR1);
-
-
-while (1){
-	// LCD_GoTo(1,1);		LCD_WriteInt(i);
-
-	LED_ToggleLED(LED1); 	_delay_ms(100);
-
-}
-}
-
 #endif
 
 #ifdef TESTING_WATCHDOG_TIMER		/////////////////////
