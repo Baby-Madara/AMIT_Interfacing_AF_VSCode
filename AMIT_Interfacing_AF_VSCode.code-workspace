@@ -18,7 +18,10 @@
 			"externalinterrupts.h": "c",
 			"mem_map.h": "c",
 			"timers.h": "c",
-			"ex_interrupts_private.h": "c"
+			"ex_interrupts_private.h": "c",
+			"ex_interrupts.h": "c",
+			"servo.h": "c",
+			"interrupt.h": "c"
 		}
 	}
 }

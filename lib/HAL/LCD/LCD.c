@@ -1,4 +1,4 @@
-#include "LCD_Interface.h"
+#include "LCD.h"
 
 u8 cursorTracer =0;
 

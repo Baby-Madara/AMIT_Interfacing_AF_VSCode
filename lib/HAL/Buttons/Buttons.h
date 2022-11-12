@@ -1,7 +1,7 @@
 #ifndef BUTTONS_H_INCLUDED
 #define BUTTONS_H_INCLUDED
 
-#include <DIO/DIO_Interface.h>
+#include <DIO/DIO.h>
 
 
 #define BUTTON_BTN0 DIO_B0

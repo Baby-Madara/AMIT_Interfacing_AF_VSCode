@@ -1,7 +1,7 @@
 #ifndef KEYPAD_H_INCLUDED
 #define KEYPAD_H_INCLUDED
 
-#include <DIO/DIO_Interface.h>
+#include <DIO/DIO.h>
 #include <util/delay.h>
 
 

@@ -1,4 +1,4 @@
-#include "DIO_Interface.h"
+#include "DIO.h"
 
 void DIO_VoidPinMode		(u8 port, u8 pin, u8 mode	){
 	if(port <4){

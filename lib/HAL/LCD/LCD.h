@@ -3,7 +3,7 @@
 
 // #include <string.h>
 
-#include "../MCAL/DIO/DIO_Interface.h"
+#include "../MCAL/DIO/DIO.h"
 
 #include <stdio.h>
 

@@ -1,7 +1,7 @@
 #ifndef LEDS_H_INCLUDED
 #define LEDS_H_INCLUDED
 
-#include <DIO/DIO_Interface.h>
+#include <DIO/DIO.h>
 
 
 #define LED0 	DIO_C2

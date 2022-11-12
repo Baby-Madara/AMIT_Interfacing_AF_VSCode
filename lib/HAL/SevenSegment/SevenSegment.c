@@ -1,5 +1,4 @@
 #include "SevenSegment.h"
-#include "util/delay.h"
 
 
 void SEG_voidInit(){

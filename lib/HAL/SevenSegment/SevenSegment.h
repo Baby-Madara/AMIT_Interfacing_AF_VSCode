@@ -1,7 +1,9 @@
 #ifndef SEVENSEGMENT_H_INCLUDED
 #define SEVENSEGMENT_H_INCLUDED
 
-#include <DIO/DIO_Interface.h>
+#include <DIO/DIO.h>
+
+#include "util/delay.h"
 
 #define SEG_A	DIO_A4
 #define SEG_B	DIO_A5

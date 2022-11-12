@@ -9,30 +9,32 @@
  * 	DIO				|
  * 	Registers Page 	||	327
  *  
- * @pinout:					   [PDIP]:
- *  	(XCK/T0) PB0	|1-------@------40|	PA0 (ADC0)
- *  	(T1) PB1		|2				39|	PA1 (ADC1)
- *  	(INT2/AIN0) PB2	|3				38|	PA2 (ADC2)
- *  	(OC0/AIN1) PB3	|4				37|	PA3 (ADC3)
- *  	(_SS) PB4		|5				36|	PA4 (ADC4)
- *  	(MOSI) PB5		|6				35|	PA5 (ADC5)
- *  	(MISO) PB6		|7				34|	PA6 (ADC6)
- *  	(SCK) PB7		|8				33|	PA7 (ADC7)
- *  			  _RESET|9				32|	AREF
- *  				 VCC|10				31|	GND
- *  				 GND|11				30|	AVCC
- *  			   XTAL2|12				29|	PC7 (TOSC2)
- *  			   XTAL1|13				28|	PC6 (TOSC1)
- *  	(RXD) PD0		|14				27|	PC5 (TDI)
- *  	(TXD) PD1		|15				26|	PC4 (TDO)
- *  	(INT0) PD2		|16				25|	PC3 (TMS)
- *  	(INT1) PD3		|17				24|	PC2 (TCK)
- *  	(OC1B) PD4		|18				23|	PC1 (SDA)
- *  	(OC1A) PD5		|19				22|	PC0 (SCL)
- *  	(ICP1) PD6		|20				21|	PD7 (OC2)
- *  					|-----------------|
- *  		* (_PIN) means inverse logic
+ * @pinout:					          
+ *                            [PDIP]:
+ *                      __________________
+ *        (XCK/T0) PB0 |1       @       40| PA0 (ADC0)
+ *            (T1) PB1 |2               39| PA1 (ADC1)
+ *     (INT2/AIN0) PB2 |3               38| PA2 (ADC2)
+ *      (OC0/AIN1) PB3 |4               37| PA3 (ADC3)
+ *           (_SS) PB4 |5               36| PA4 (ADC4)
+ *          (MOSI) PB5 |6               35| PA5 (ADC5)
+ *          (MISO) PB6 |7               34| PA6 (ADC6)
+ *           (SCK) PB7 |8               33| PA7 (ADC7)
+ *              _RESET |9               32| AREF
+ *                 VCC |10   ATMega32   31| GND
+ *                 GND |11              30| AVCC
+ *               XTAL2 |12              29| PC7 (TOSC2)
+ *               XTAL1 |13              28| PC6 (TOSC1)
+ *           (RXD) PD0 |14              27| PC5 (TDI)
+ *           (TXD) PD1 |15              26| PC4 (TDO)
+ *          (INT0) PD2 |16              25| PC3 (TMS)
+ *          (INT1) PD3 |17              24| PC2 (TCK)
+ *          (OC1B) PD4 |18              23| PC1 (SDA)
+ *          (OC1A) PD5 |19              22| PC0 (SCL)
+ *          (ICP1) PD6 |20              21| PD7 (OC2)
+ *                     |__________________|
  *  
+ *                 * (_PIN) means inverse logic
  *  
  * @sw_archeticture: 
  *  ***************************************** Software Architecture ***************************************** //
@@ -60,23 +62,28 @@
 
 #include <mem_map.h>
 #include <BitMath.h>
-#include <DIO/DIO_Interface.h>
+#include <DIO/DIO.h>
 #include <LEDs/LEDs.h>
 #include <Buttons/Buttons.h>
 
-#include <LCD/LCD_Interface.h>
+#include <LCD/LCD.h>
 #include <KeyPad/KeyPad.h>
 #include <SevenSegment/SevenSegment.h>
+#include <Servo/Servo.h>
+
 
 #include <Ex_Interrupts/Ex_Interrupts.h>
 #include <ADC/ADC.h>
 #include <Timers/Timers.h>
+#include <WatchDog_Timer/WatchDog_Timer.h>
 
 
-// #define TESTING_ADC
+// #define TESTING_WATCHDOG_TIMER
+#define TESTING_ADC
 // #define TESTING_TIMERS
-#define TESTING_EX_INTERRUPTS
+// #define TESTING_EX_INTERRUPTS
 // 	////
+// #define TESTING_SERVO
 // #define TESTING_SEVEN_SEGMENTS
 // #define TESTING_KEYPAD
 // #define TESTING_LCD
@@ -87,36 +94,22 @@
 // 	////
 // #define GENERAL_TEST
 
-#ifdef TESTING_EX_INTERRUPTS		/////////////////////
 
-void myLEDToggling(void){	 
-	Interrupts_EXTI0voidDisable();
-	LED_voidToggleLED(LED1);		
-	Interrupts_EXTI0voidEnable();
-	
-}
+
+#ifdef TESTING_ADC					/////////////////////
 
 int main(){
-	Button_InitNoPullUp(BUTTON_BTN2);
-	LED_voidInitLED(LED0);
-	LED_voidInitLED(LED1);
-	LED_voidSetLED(LED1);
+	LCD_voidInit();
+	ADC_Init();
+	DIO_VoidPinMode(DIO_A1, INPUT);
 
-	Interrupts_EXTI0voidInit();
-	Interrupts_EXTI0voidEnable();
-	Interrupts_EXTI0voidSignalMode(EXT_FALLING);
-	Interrupts_EXT0SetCallBack(myLEDToggling);
-
-while (1){	
-
-
-	DIO_VoidDigitalTogglePin(LED0); _delay_ms(100);
-
-
-
+while (1)
+{
+	LCD_voidGoTo(1,1);
+	LCD_voidWriteInt(ADC_Read(1));
+	ADC_Read(2);
 }
 }
-
 #endif
 
 
@@ -130,6 +123,59 @@ while (1){
 
 
 
+
+
+#ifdef TESTING_EX_INTERRUPTS		/////////////////////
+
+u8 i=0;
+
+void myISR0(void){	 
+	EX_Int0_Disable();
+	LED_voidToggleLED(LED0);		
+	EX_Int0_Enable();
+}
+void myISR1(void){	 
+	EX_Int1_Disable();
+	LED_voidToggleLED(LED1);
+	i++;		
+	EX_Int1_Enable();
+}
+
+
+int main(){
+
+	LCD_voidInit();
+
+	LED_voidInitLED(LED0);
+	LED_voidInitLED(LED1);
+
+	EX_Int0_Init(EX_INT0_FALLING);
+	EX_Int0_SetCallBack(myISR0);
+
+	EX_Int1_Init(EX_INT1_FALLING);
+	EX_Int1_SetCallBack(myISR1);
+
+
+while (1){
+	LCD_voidGoTo(1,1);
+	LCD_voidWriteInt(i);
+
+}
+}
+
+#endif
+
+#ifdef TESTING_WATCHDOG_TIMER		/////////////////////
+
+
+int main(){
+
+
+while(1){
+
+}
+}
+#endif
 
 #ifdef TESTING_TIMERS				/////////////////////
 int main(){
@@ -143,18 +189,10 @@ while (1)
 }
 #endif
 
-#ifdef TESTING_ADC
-
+#ifdef TESTING_SERVO				/////////////////////
 int main(){
-	LCD_voidInit();
-	ADC_Init();
-	DIO_VoidPinMode(DIO_A1, INPUT);
+while(1){
 
-while (1)
-{
-	LCD_voidGoTo(1,1);
-	LCD_voidWriteInt(ADC_Read(1));
-	ADC_Read(2);
 }
 }
 #endif
@@ -223,6 +261,8 @@ while(1){
 
 
 
+
+
 #ifdef GENERAL_TEST					/////////////////////
 int main(){
 while(1){
@@ -238,20 +278,9 @@ while(1){
 
 
 
-// int main(){
-// 	LCD_voidInit();
-// 	KeyPad_voidInit();
-// 	volatile u8 prevRead	=0,
-// 				currentRead	=0;
-// while(1){
-// 	currentRead = KeyPad_u8GetRead();
-// 	if((prevRead != currentRead) && (currentRead != 0) ){
-// 		LCD_voidWriteData(currentRead);
-// 	}
-// 	_delay_ms(10);
-// 	prevRead = currentRead;
-// }
-// }
+
+
+
 
 
 

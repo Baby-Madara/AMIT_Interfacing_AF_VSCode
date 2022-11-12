@@ -3,14 +3,24 @@
 #include "../UTILS/STD_Types.h"
 
 
-#define Bit7	7 	
-#define Bit6	6 	
-#define Bit5	5 	
-#define Bit4	4 	
-#define Bit3	3 	
-#define Bit2	2 	
-#define Bit1	1 	
-#define Bit0	0 		
+#define Bit7	7
+#define Bit6	6
+#define Bit5	5
+#define Bit4	4
+#define Bit3	3
+#define Bit2	2
+#define Bit1	1
+#define Bit0	0
+
+#define PIN_0	0
+#define PIN_1	1
+#define PIN_2	2
+#define PIN_3	3
+#define PIN_4	4
+#define PIN_5	5
+#define PIN_6	6
+#define PIN_7	7
+
 
 #define SREG	(*(volatile u8*)0x5F) 	 			// page 10
 #define SREG_I	7	 	

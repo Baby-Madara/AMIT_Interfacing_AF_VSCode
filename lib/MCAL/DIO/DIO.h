@@ -1,8 +1,11 @@
 #ifndef _DIO_INTERFACE_H
 #define _DIO_INTERFACE_H
 
-#include "DIO_Private.h"
+#include <mem_map.h>
+#include <STD_Types.h>
 #include <BitMath.h>
+
+
 
 #define INPUT  			0
 #define INPUT_NOPULLUP	0
@@ -14,15 +17,6 @@
 #define DIO_B	1
 #define DIO_C	2
 #define DIO_D	3
-
-#define PIN_0	0
-#define PIN_1	1
-#define PIN_2	2
-#define PIN_3	3
-#define PIN_4	4
-#define PIN_5	5
-#define PIN_6	6
-#define PIN_7	7
 
 
 #define DIO_A0	DIO_A,PIN_0
