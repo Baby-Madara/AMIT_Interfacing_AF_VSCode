@@ -6,12 +6,13 @@
 #define TRUE	1
 #define FALSE	0
 #define HIGH	1
-#define LOW	0
+#define LOW		0
 
-
+#define NULLptr	((void(*)(void))(0x00))
 
 typedef unsigned char 		u8;
 typedef signed 	 char 		s8;
+
 typedef unsigned char 		bool;
 
 typedef unsigned short 		u16;

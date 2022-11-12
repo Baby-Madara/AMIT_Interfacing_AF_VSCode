@@ -20,5 +20,4 @@ void SEG_voidDisplay(u8 num);
 
 
 
-
 #endif //SEVENSEGMENT_H_INCLUDED

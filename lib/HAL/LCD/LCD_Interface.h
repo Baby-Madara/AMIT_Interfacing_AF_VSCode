@@ -5,6 +5,8 @@
 
 #include "../MCAL/DIO/DIO_Interface.h"
 
+#include <stdio.h>
+
 #include "STD_Types.h"
 #include "BitMath.h"
 #include <util/delay.h>

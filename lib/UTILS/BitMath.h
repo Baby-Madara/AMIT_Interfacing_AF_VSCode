@@ -11,6 +11,7 @@
 #define TOGGLE_BIT(	reg, bit)	(reg ^= (1<<bit))
 #define GET_BIT(	reg, bit)	(1   &(reg>>bit))
 
+#define WRITE_BIT(REG,PIN,DATA)	( (REG) = ( REG & (~(1<<PIN)) ) | (DATA<<PIN) )
 
 
 

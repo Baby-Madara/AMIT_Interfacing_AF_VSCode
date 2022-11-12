@@ -4,5 +4,6 @@
 		"dio_interface.h": "c",
 		"dio_private.h": "c",
 		"bitmath.h": "c"
-	}
+	},
+	"C_Cpp.errorSquiggles": "Disabled"
 }
