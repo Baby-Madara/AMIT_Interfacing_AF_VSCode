@@ -1,16 +1,15 @@
 # AMIT_Interfacing_AF_VSCode
 
 This is Embedded Systems interfacing course codes
-
-
-## Documentation
-
+<br>
+##Documentation
+<br>
 ### author
 Ahmed Farahat : @Baby-Madara ahmed.farahat1@msa.edu.eg - ahmedfarahat1177@gmail.com - +201119027639
-
+<br>
 ### details
 ATMega32 drivers for AMIT Kit with the following hardware (in the HAL layer). Using PlatformIO as IDE on VS Code
-
+<br>
 ### date
 start date: 24-09-2022            -        completed:     __-__-2022
 
@@ -18,10 +17,10 @@ start date: 24-09-2022            -        completed:     __-__-2022
 learned embedded systems interfacing from different instructors but special thanks for Moatasem El-Sayed & Sara Abd Rabbo
 
 ### datasheet:
-- ADC                |201
-- Interrupts         |
-- DIO                |
-- Registers Page     ||    327
+- ADC &nbsp &nbsp &nbsp |201
+- Interrupts &nbsp &nbsp|
+- DIO &nbsp &nbsp &nbsp |
+- Registers Page &nbsp ||    327
 
 ### pinout:
 <pre>
