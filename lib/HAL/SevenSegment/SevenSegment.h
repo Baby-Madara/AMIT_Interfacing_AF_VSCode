@@ -16,9 +16,9 @@
 #define SEG_En2	DIO_B1
 
 
-void SEG_voidInit();
+void SEG_Init();
 
-void SEG_voidDisplay(u8 num);
+void SEG_Display(u8 num);
 
 
 

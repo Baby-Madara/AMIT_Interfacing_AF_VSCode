@@ -1,6 +1,6 @@
 #include "DIO.h"
 
-void DIO_VoidPinMode		(u8 port, u8 pin, u8 mode	){
+void DIO_PinMode			(u8 port, u8 pin, u8 mode	){
 	if(port <4){
 		if(pin <8){
 			switch(mode){
@@ -35,7 +35,7 @@ void DIO_VoidPinMode		(u8 port, u8 pin, u8 mode	){
 }
 
 
-void DIO_VoidDigitalWritePin	(u8 port, u8 pin, u8 val	){
+void DIO_DigitalWritePin	(u8 port, u8 pin, u8 val	){
 	
 
 	switch(val){
@@ -68,7 +68,7 @@ void DIO_VoidDigitalWritePin	(u8 port, u8 pin, u8 val	){
 }
 
 
-void DIO_VoidDigitalTogglePin	(u8 port, u8 pin		){
+void DIO_DigitalTogglePin	(u8 port, u8 pin			){
 	if(port<4){
 		if(pin<8){
 
@@ -86,7 +86,7 @@ void DIO_VoidDigitalTogglePin	(u8 port, u8 pin		){
 
 
 
-u8   DIO_u8DigitalReadPin		(u8 port, u8 pin		){
+u8   DIO_DigitalReadPin		(u8 port, u8 pin		){
 	volatile bool val=0;
 	switch(port){
 		case DIO_A:{	val=	GET_BIT(PINA, pin);	}break;
@@ -103,7 +103,7 @@ u8   DIO_u8DigitalReadPin		(u8 port, u8 pin		){
 
 
 
-u8   DIO_u8ReturnOutputValue	(u8 port, u8 pin			){
+u8   DIO_ReturnOutputValue	(u8 port, u8 pin		){
 	volatile u8 val;
 	switch (port){
 		case DIO_A: {	val= 	GET_BIT(PORTA, pin); }break;
@@ -121,7 +121,7 @@ u8   DIO_u8ReturnOutputValue	(u8 port, u8 pin			){
 
 
 
-void DIO_VoidPortMode			(u8 port, u8 mode	){
+void DIO_PortMode			(u8 port, u8 mode		){
 	switch (mode)
 	{
 		case OUTPUT:	switch (port)
@@ -149,7 +149,7 @@ void DIO_VoidPortMode			(u8 port, u8 mode	){
 
 }
 
-void DIO_VoidDigitalWritePort	(u8 port, u8 val	){
+void DIO_DigitalWritePort	(u8 port, u8 val		){
 	switch (port)
 	{
 		case DIO_A:		PORTA = val;	break;
@@ -163,7 +163,7 @@ void DIO_VoidDigitalWritePort	(u8 port, u8 val	){
 
 }
 
-void DIO_VoidDigitalTogglePort	(u8 port			){
+void DIO_DigitalTogglePort	(u8 port				){
 	switch (port)
 	{
 		case DIO_A:		TOGGLE_REG(PORTA);	break;
@@ -175,7 +175,7 @@ void DIO_VoidDigitalTogglePort	(u8 port			){
 	}
 }
 
-u8   DIO_u8DigitalReadPort		(u8 port			){
+u8   DIO_DigitalReadPort		(u8 port			){
 	volatile u8 val;
 
 	switch (port)

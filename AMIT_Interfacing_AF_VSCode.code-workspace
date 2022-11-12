@@ -21,7 +21,11 @@
 			"ex_interrupts_private.h": "c",
 			"ex_interrupts.h": "c",
 			"servo.h": "c",
-			"interrupt.h": "c"
+			"interrupt.h": "c",
+			"leds.h": "c",
+			"lcd.h": "c",
+			"buttons.h": "c",
+			"dio.h": "c"
 		}
 	}
 }

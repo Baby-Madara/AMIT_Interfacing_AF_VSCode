@@ -10,15 +10,15 @@
 #define BUZZER 	DIO_A3
 
 
-void LED_voidInitLED(	u8 LEDPort, u8 LEDPin			);
+void LED_InitLED(	u8 LEDPort, u8 LEDPin			);
 
-void LED_voidWriteLED(	u8 LEDPort, u8 LEDPin, u8 val	);
+void LED_WriteLED(	u8 LEDPort, u8 LEDPin, u8 val	);
 
-void LED_voidSetLED(	u8 LEDPort, u8 LEDPin			);
-void LED_voidClearLED(	u8 LEDPort, u8 LEDPin			);
-void LED_voidToggleLED(	u8 LEDPort, u8 LEDPin			);
+void LED_SetLED(	u8 LEDPort, u8 LEDPin			);
+void LED_ClearLED(	u8 LEDPort, u8 LEDPin			);
+void LED_ToggleLED(	u8 LEDPort, u8 LEDPin			);
 
-u8 	 LED_LEDState(		u8 LEDPort, u8 LEDPin			);
+u8 	 LED_LEDState(	u8 LEDPort, u8 LEDPin			);
 
 
 

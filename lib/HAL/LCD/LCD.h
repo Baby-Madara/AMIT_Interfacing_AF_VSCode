@@ -49,20 +49,22 @@ extern u8 cursorTracer;
 
 
 
-void LCD_voidCycle();
+void LCD_Cycle();
 
-void LCD_voidInit();
+void LCD_Init();
 
-void LCD_voidWriteData(u8 data);
-void LCD_voidWriteCMD(u8 cmd);
+void LCD_WriteData(u8 data);
+void LCD_WriteCMD(u8 cmd);
 
-void LCD_voidWriteString(u8* str);
-void LCD_voidClear();
-void LCD_voidGoTo(u8 line, u8 col);
+void LCD_WriteString(u8* str);
+void LCD_Clear();
+void LCD_GoTo(u8 line, u8 col);
 
 
-void LCD_voidWrite(s64 num);
+void LCD_Write(s64 num);
 
+void LCD_WriteInt(s64 num);
+void LCD_WriteFloat(float64 num, u8 digits);
 
 
 
@@ -70,8 +72,7 @@ void LCD_voidWrite(s64 num);
 void reverse(u8 *str, s32 len);
 s64 intToStr(s32 x, u8 str[], s32 d);
 void ftoa(float64 n, u8 *res, s32 afterpoint);
-void LCD_voidWriteInt(s64 num);
-void LCD_voidWriteFloat(float64 num, u8 digits);
+
 
 
 

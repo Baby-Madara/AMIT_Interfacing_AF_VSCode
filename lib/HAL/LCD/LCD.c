@@ -2,41 +2,41 @@
 
 u8 cursorTracer =0;
 
-void LCD_voidCycle(){
-	DIO_VoidDigitalWritePin(LCD_En, HIGH);		_delay_ms(1);
-	DIO_VoidDigitalWritePin(LCD_En, LOW);		_delay_ms(1);
+void LCD_Cycle(){
+	DIO_DigitalWritePin(LCD_En, HIGH);		_delay_ms(1);
+	DIO_DigitalWritePin(LCD_En, LOW);		_delay_ms(1);
 }
 
 
-void LCD_voidInit(){
+void LCD_Init(){
 
-	DIO_VoidPinMode(LCD_RS, OUTPUT);
-	DIO_VoidPinMode(LCD_RW, OUTPUT);
-	DIO_VoidPinMode(LCD_En, OUTPUT);
+	DIO_PinMode(LCD_RS, OUTPUT);
+	DIO_PinMode(LCD_RW, OUTPUT);
+	DIO_PinMode(LCD_En, OUTPUT);
 
-	DIO_VoidPinMode(LCD_D4, OUTPUT);
-	DIO_VoidPinMode(LCD_D5, OUTPUT);
-	DIO_VoidPinMode(LCD_D6, OUTPUT);
-	DIO_VoidPinMode(LCD_D7, OUTPUT);
+	DIO_PinMode(LCD_D4, OUTPUT);
+	DIO_PinMode(LCD_D5, OUTPUT);
+	DIO_PinMode(LCD_D6, OUTPUT);
+	DIO_PinMode(LCD_D7, OUTPUT);
 	_delay_ms(100);
 
 	// func set
-	LCD_voidWriteCMD(LCD_4bit_mode);
-	DIO_VoidDigitalWritePin(LCD_D7, 	1	); 	//N 0 1 line 
-	DIO_VoidDigitalWritePin(LCD_D6, 	0	);	//F 0 5*7 dot character font
-	LCD_voidCycle();
+	LCD_WriteCMD(LCD_4bit_mode);
+	DIO_DigitalWritePin(LCD_D7, 	1	); 	//N 0 1 line 
+	DIO_DigitalWritePin(LCD_D6, 	0	);	//F 0 5*7 dot character font
+	LCD_Cycle();
 	_delay_us(100);
 
 	//disp on
-	LCD_voidWriteCMD(0x0F);
+	LCD_WriteCMD(0x0F);
 	_delay_us(100);
 
 	//disp clear
-	LCD_voidWriteCMD(0x01);
+	LCD_WriteCMD(0x01);
 	_delay_ms(2);
 
 	// entry mode set
-	LCD_voidWriteCMD(0x06);
+	LCD_WriteCMD(0x06);
 
 
 
@@ -45,29 +45,29 @@ void LCD_voidInit(){
 	
 }
 
-void LCD_voidWriteData(u8 data){
+void LCD_WriteData(u8 data){
 
-	DIO_VoidDigitalWritePin(LCD_RS, HIGH);
-	DIO_VoidDigitalWritePin(LCD_RW, LOW);
+	DIO_DigitalWritePin(LCD_RS, HIGH);
+	DIO_DigitalWritePin(LCD_RW, LOW);
 
-	DIO_VoidDigitalWritePin(LCD_D7, 	GET_BIT(data,7)	);
-	DIO_VoidDigitalWritePin(LCD_D6, 	GET_BIT(data,6)	);
-	DIO_VoidDigitalWritePin(LCD_D5, 	GET_BIT(data,5)	);
-	DIO_VoidDigitalWritePin(LCD_D4, 	GET_BIT(data,4)	);
-	LCD_voidCycle();
+	DIO_DigitalWritePin(LCD_D7, 	GET_BIT(data,7)	);
+	DIO_DigitalWritePin(LCD_D6, 	GET_BIT(data,6)	);
+	DIO_DigitalWritePin(LCD_D5, 	GET_BIT(data,5)	);
+	DIO_DigitalWritePin(LCD_D4, 	GET_BIT(data,4)	);
+	LCD_Cycle();
 
-	DIO_VoidDigitalWritePin(LCD_D7, 	GET_BIT(data,3)	);
-	DIO_VoidDigitalWritePin(LCD_D6, 	GET_BIT(data,2)	);
-	DIO_VoidDigitalWritePin(LCD_D5, 	GET_BIT(data,1)	);
-	DIO_VoidDigitalWritePin(LCD_D4, 	GET_BIT(data,0)	);
-	LCD_voidCycle();
+	DIO_DigitalWritePin(LCD_D7, 	GET_BIT(data,3)	);
+	DIO_DigitalWritePin(LCD_D6, 	GET_BIT(data,2)	);
+	DIO_DigitalWritePin(LCD_D5, 	GET_BIT(data,1)	);
+	DIO_DigitalWritePin(LCD_D4, 	GET_BIT(data,0)	);
+	LCD_Cycle();
 	
 	++cursorTracer;
 	if(cursorTracer== 16){
-		LCD_voidGoTo(1,0);
+		LCD_GoTo(1,0);
 	}
 	else if(cursorTracer==32){
-		LCD_voidGoTo(0,0);
+		LCD_GoTo(0,0);
 		cursorTracer=0;
 	}
 
@@ -78,24 +78,24 @@ void LCD_voidWriteData(u8 data){
 }
 
 
-void LCD_voidWriteCMD(u8 cmd){
+void LCD_WriteCMD(u8 cmd){
 
 
 	
-	DIO_VoidDigitalWritePin(LCD_RS, 	LOW);
-	DIO_VoidDigitalWritePin(LCD_RW, 	LOW);
+	DIO_DigitalWritePin(LCD_RS, 	LOW);
+	DIO_DigitalWritePin(LCD_RW, 	LOW);
 
-	DIO_VoidDigitalWritePin(LCD_D7, 	GET_BIT( cmd,7)	);
-	DIO_VoidDigitalWritePin(LCD_D6, 	GET_BIT( cmd,6)	);
-	DIO_VoidDigitalWritePin(LCD_D5, 	GET_BIT( cmd,5)	);
-	DIO_VoidDigitalWritePin(LCD_D4, 	GET_BIT( cmd,4)	);
-	LCD_voidCycle();
+	DIO_DigitalWritePin(LCD_D7, 	GET_BIT( cmd,7)	);
+	DIO_DigitalWritePin(LCD_D6, 	GET_BIT( cmd,6)	);
+	DIO_DigitalWritePin(LCD_D5, 	GET_BIT( cmd,5)	);
+	DIO_DigitalWritePin(LCD_D4, 	GET_BIT( cmd,4)	);
+	LCD_Cycle();
 
-	DIO_VoidDigitalWritePin(LCD_D7, 	GET_BIT( cmd,3)	);
-	DIO_VoidDigitalWritePin(LCD_D6, 	GET_BIT( cmd,2)	);
-	DIO_VoidDigitalWritePin(LCD_D5, 	GET_BIT( cmd,1)	);
-	DIO_VoidDigitalWritePin(LCD_D4, 	GET_BIT( cmd,0)	);
-	LCD_voidCycle();
+	DIO_DigitalWritePin(LCD_D7, 	GET_BIT( cmd,3)	);
+	DIO_DigitalWritePin(LCD_D6, 	GET_BIT( cmd,2)	);
+	DIO_DigitalWritePin(LCD_D5, 	GET_BIT( cmd,1)	);
+	DIO_DigitalWritePin(LCD_D4, 	GET_BIT( cmd,0)	);
+	LCD_Cycle();
 
 	_delay_ms(2);
 }
@@ -105,9 +105,9 @@ void LCD_voidWriteCMD(u8 cmd){
 
 
 
-void LCD_voidWriteString(u8* str){
+void LCD_WriteString(u8* str){
 	while (*str != '\0'){
-		LCD_voidWriteData(*str);
+		LCD_WriteData(*str);
 		++str;
 	}
 }
@@ -116,15 +116,15 @@ void LCD_voidWriteString(u8* str){
 
 
 
-void LCD_voidClear(){
-	LCD_voidWriteCMD(LCD_clr);
+void LCD_Clear(){
+	LCD_WriteCMD(LCD_clr);
 	cursorTracer=0;
 }
 
 
 
-void LCD_voidGoTo(u8 line, u8 col){
-	LCD_voidWriteCMD(LCD_DDRAM_addr + (line*64 + col));
+void LCD_GoTo(u8 line, u8 col){
+	LCD_WriteCMD(LCD_DDRAM_addr + (line*64 + col));
 	cursorTracer = line*16 + col;
 }
 
@@ -201,18 +201,18 @@ void ftoa(float64 n, u8 *res, s32 afterpoint)
 }
 
 
-void LCD_voidWriteInt(s64 num){
+void LCD_WriteInt(s64 num){
 	u8 num_str[10]={0};
 	sprintf((char*)num_str, 	"%d", 	(int)num);
-	LCD_voidWriteString(num_str);
+	LCD_WriteString(num_str);
 }
 
 
 
-void LCD_voidWriteFloat(float64 num, u8 digits){
+void LCD_WriteFloat(float64 num, u8 digits){
 	u8 res[20] = {0};
 	ftoa(num, res, digits);
-	LCD_voidWriteString(res);
+	LCD_WriteString(res);
 }
 
 

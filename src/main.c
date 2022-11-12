@@ -58,7 +58,7 @@
 */
 
 
-
+#include <util/delay.h>
 
 #include <mem_map.h>
 #include <BitMath.h>
@@ -78,11 +78,12 @@
 #include <WatchDog_Timer/WatchDog_Timer.h>
 
 
+// ************   uncomment ONLY the line corresponding to the driver you test   ************ //
 // #define TESTING_WATCHDOG_TIMER
-#define TESTING_ADC
+// #define TESTING_ADC
 // #define TESTING_TIMERS
-// #define TESTING_EX_INTERRUPTS
-// 	////
+#define TESTING_EX_INTERRUPTS
+//////
 // #define TESTING_SERVO
 // #define TESTING_SEVEN_SEGMENTS
 // #define TESTING_KEYPAD
@@ -91,7 +92,7 @@
 // #define TESTING_LEDS
 // #define TESTING_DIO
 // #define TESTING_BIT_MATH
-// 	////
+//////
 // #define GENERAL_TEST
 
 
@@ -99,14 +100,14 @@
 #ifdef TESTING_ADC					/////////////////////
 
 int main(){
-	LCD_voidInit();
+	LCD_Init();
 	ADC_Init();
-	DIO_VoidPinMode(DIO_A1, INPUT);
+	DIO_PinMode(DIO_A1, INPUT);
 
 while (1)
 {
-	LCD_voidGoTo(1,1);
-	LCD_voidWriteInt(ADC_Read(1));
+	LCD_GoTo(1,1);
+	LCD_WriteInt(ADC_Read(1));
 	ADC_Read(2);
 }
 }
@@ -131,34 +132,36 @@ u8 i=0;
 
 void myISR0(void){	 
 	EX_Int0_Disable();
-	LED_voidToggleLED(LED0);		
+	LED_ToggleLED(LED0);		
 	EX_Int0_Enable();
 }
-void myISR1(void){	 
-	EX_Int1_Disable();
-	LED_voidToggleLED(LED1);
-	i++;		
-	EX_Int1_Enable();
-}
+
+// void myISR1(void){	 
+// 	EX_Int1_Disable();
+// 	LED_ToggleLED(LED1);
+// 	// i++;		
+// 	EX_Int1_Enable();
+// }
 
 
 int main(){
 
-	LCD_voidInit();
+	LCD_Init();
 
-	LED_voidInitLED(LED0);
-	LED_voidInitLED(LED1);
+	LED_InitLED(LED0);
+	LED_InitLED(LED1);
 
 	EX_Int0_Init(EX_INT0_FALLING);
 	EX_Int0_SetCallBack(myISR0);
 
-	EX_Int1_Init(EX_INT1_FALLING);
-	EX_Int1_SetCallBack(myISR1);
+	// EX_Int1_Init(EX_INT1_FALLING);
+	// EX_Int1_SetCallBack(myISR1);
 
 
 while (1){
-	LCD_voidGoTo(1,1);
-	LCD_voidWriteInt(i);
+	// LCD_GoTo(1,1);		LCD_WriteInt(i);
+
+	LED_ToggleLED(LED1); 	_delay_ms(100);
 
 }
 }

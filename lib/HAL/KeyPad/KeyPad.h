@@ -18,8 +18,8 @@
 #define KEYPAD_C3	DIO_D5
 
 
-void KeyPad_voidInit();
-u8 KeyPad_u8GetRead();
+void KeyPad_Init();
+u8 KeyPad_GetRead();
 
 
 
