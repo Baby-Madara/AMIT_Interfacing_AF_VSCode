@@ -138,14 +138,10 @@ void GI_Disable();
 	void vector (void) __attribute__ ((used)) __VA_ARGS__; \
 	void vector (void)
 
-// #define ISR(vector, ...)            \
-// 	void vector (void) __attribute__ ((signal,__INTR_ATTRS)) __VA_ARGS__; \
-// 	void vector (void)
+// #define ISR(vector, ...)            \ // 	void vector (void) __attribute__ ((signal,__INTR_ATTRS)) __VA_ARGS__; \ // 	void vector (void)
 
 //OR:
 
-// #define ISR(vector, ...)            \
-// 	void vector (void) __attribute__ ((used)) __VA_ARGS__; \
-// 	void vector (void)
+// #define ISR(vector, ...)            \  // 	void vector (void) __attribute__ ((used)) __VA_ARGS__; \  // 	void vector (void)
 
 #endif // GENERAL_INTERRUPTS_H_INCLUDED

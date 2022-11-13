@@ -55,6 +55,14 @@
 #define DIO_D6	DIO_D,PIN_6
 #define DIO_D7	DIO_D,PIN_7
 
+#define DIO_A0_ANALOG	ADC_CH0
+#define DIO_A1_ANALOG	ADC_CH1
+#define DIO_A2_ANALOG	ADC_CH2
+#define DIO_A3_ANALOG	ADC_CH3
+#define DIO_A4_ANALOG	ADC_CH4
+#define DIO_A5_ANALOG	ADC_CH5
+#define DIO_A6_ANALOG	ADC_CH6
+#define DIO_A7_ANALOG	ADC_CH7
 
 
 void DIO_PinMode			(u8 port, u8 pin, 	u8 mode	);

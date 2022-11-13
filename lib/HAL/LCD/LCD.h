@@ -56,15 +56,17 @@ void LCD_Init();
 void LCD_WriteData(u8 data);
 void LCD_WriteCMD(u8 cmd);
 
-void LCD_WriteString(u8* str);
+
 void LCD_Clear();
 void LCD_GoTo(u8 line, u8 col);
 
 
-void LCD_Write(s64 num);
-
+void LCD_WriteString(u8* str);
+void LCD_WriteStringWithLength(u8* str, s8 len);
 void LCD_WriteInt(s64 num);
 void LCD_WriteFloat(float64 num, u8 digits);
+
+void LCD_WriteNumWithLength(float64 num, u8 len);
 
 
 

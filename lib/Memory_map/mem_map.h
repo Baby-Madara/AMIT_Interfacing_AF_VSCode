@@ -64,7 +64,6 @@
 #define INTF0	6 	
 #define INTF2	5 	
 
-
 #define TIMSK	(*(volatile u8*)0x59) 	 			//82, 112, 130
 #define OCIE2	7	
 #define TOIE2	6 	
@@ -415,14 +414,14 @@
 #define MUX0	0 		
 
 #define ADCSRA 	(*(volatile u8*)0x26) 	 	//216
-#define ADEN	7 	
-#define ADSC	6 	
-#define ADATE	5 	
-#define ADIF	4 	
-#define ADIE	3 	
-#define ADPS2	2 	
-#define ADPS1	1 	
-#define ADPS0	0 		
+#define ADEN	7 	//ADC_Enable
+#define ADSC	6 	//ADC_StartConversion
+#define ADATE	5 	//ADC_AutoTriggerEnable
+#define ADIF	4 	//ADC_InterruptFlag
+#define ADIE	3 	//ADC_InterruptEnable
+#define ADPS2	2 	//ADC_PreScaler
+#define ADPS1	1 	//ADC_PreScaler
+#define ADPS0	0 	//ADC_PreScaler	
 
 #define ADCH 	(*(volatile u8*)0x25) 	 	// ADC Data Register High Byte 										217
 #define ADCL 	(*(volatile u8*)0x24) 	 	// ADC Data Register Low Byte 										217

@@ -113,6 +113,17 @@ void LCD_WriteString(u8* str){
 }
 
 
+void LCD_WriteStringWithLength(u8* str, s8 len){
+	while ((*str != '\0') && (len>0) ){
+		LCD_WriteData(*str);
+		++str;
+		--len;
+	}
+	while(len >0){
+		LCD_WriteData(' ');
+		--len;
+	}
+}
 
 
 
@@ -154,6 +165,8 @@ void reverse(u8 *str, s32 len){
 s64 intToStr(s32 x, u8 str[], s32 d){
 
 	s64 i = 0;
+
+	//the number will be saved inverted, then will be reversed
 	while (x){
 		str[i++] = (x % 10) + '0';
 		x = x / 10;
@@ -161,10 +174,14 @@ s64 intToStr(s32 x, u8 str[], s32 d){
 
 	// If number of digits required is more, then
 	// add 0s at the beginning
-	while (i < d)
+	while (i < d){
 		str[i++] = '0';
+	}
 
 	reverse(str, i);
+	if(0 ==i){
+		str[i++]='0';
+	}
 	str[i] = '\0';
 	return i;
 }
@@ -176,15 +193,15 @@ void ftoa(float64 n, u8 *res, s32 afterpoint)
 	if(n<0){	n=-n;			res[0]='-';		negFlag=1;	}
 	
 	// Extract integer part
-	s32 ipart = (s32)n;
+	s64 ipart = (s64)n;
 	
 	// Extract floating part
 	float64 fpart = n - (float64)ipart;
 
 	// convert integer part to string
 	s32 i;
-	if(1==negFlag) 	{	i = intToStr(ipart, res+1, 0)+1;		}
-	else			{	i = intToStr(ipart, res, 0);			}
+	if(TRUE == negFlag) 	{	i = intToStr(ipart, res+1, 0)+1;		}
+	else			        {	i = intToStr(ipart, res, 0);			}
 
 	// check for display option after point
 	if (afterpoint != 0)
@@ -217,5 +234,10 @@ void LCD_WriteFloat(float64 num, u8 digits){
 
 
 
+void LCD_WriteNumWithLength(float64 num, u8 len){
+	u8 res[len];
+	ftoa(num, res, 5);
+	LCD_WriteStringWithLength(res, len);
+}
 
 

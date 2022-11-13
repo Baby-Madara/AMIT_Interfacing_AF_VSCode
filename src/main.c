@@ -37,22 +37,20 @@
  *                 * (_PIN) means inverse logic
  *  
  * @sw_archeticture: 
- *  // ***************************************** Software Architecture ***************************************** //
- *	 [UTILS] 		||	[APP]			|						main.c
- * 					|| 	[Services]		|		structs - classes - userDefined_data_types - .....
- * 					|| 	[HAL]			|	LEDs - Buttons - SevenSegmrnt - LCD - KeyPad - Servo - DCMotor - ...
- * 		STD_Types	|| 	[MCAL]			|	DIO - General_Interrupts - External_Interrupts - ADC - Timers - ICU - ...
- * 		BIT_MATH	|| 	[MEM_MAPPING]	|					MCU registers
- * 					||
- *  // ********************************************************************************************************* //
- *  
+ *     ***************************************** Software Architecture *****************************************
+ *     * [UTILS]      || [APP]         |                     main.c                                            *
+ *     *              || [Services]    |     structs - classes - user-defined data types - ...                 *
+ *     *              || [HAL]         | LEDs - Buttons - SevenSegmrnt - LCD - KeyPad - ...                    *
+ *     *    STD_Types || [MCAL]        | DIO - General_Interrupts - External_Interrupts - ADC - Timers - ...   *
+ *     *    BIT_MATH  || [MEM_MAPPING] |                 MCU registers                                         *
+ *     *********************************************************************************************************
  *  
  * @warnings:		
  * 					-LCD and SevenSegments cannot be used together
  * 					-sevenSegments must be used with parallel programming (NO SEQUENTIAL DELAY CAN BE USED to work properly)
  * 					-
- * 
- * 
+ *  
+ *  
  * @main: 			IT IS USED FOR TESTING DRIVERS. THE DRIVER YOU WANT TO TEST, UNCOMMENT "#define TESTING_DRIVER_NAME" and type the codes you want in its section, this is for ensuring no loss of old trials
  * 
 */
@@ -80,9 +78,9 @@
 
 // ************   uncomment ONLY the line corresponding to the driver you test   ************ //
 // #define TESTING_WATCHDOG_TIMER
-// #define TESTING_ADC
+#define TESTING_ADC
 // #define TESTING_TIMERS
-#define TESTING_EX_INTERRUPTS
+// #define TESTING_EX_INTERRUPTS
 //////
 // #define TESTING_SERVO
 // #define TESTING_SEVEN_SEGMENTS
@@ -98,7 +96,32 @@
 
 
 
+#ifdef TESTING_ADC					/////////////////////
 
+void myADCISR(){
+	u8 i=0;
+	LED_ToggleLED(LED1);
+	LCD_WriteInt(i);
+	++i;
+}
+
+int main(){
+	LED_InitLED(LED1);
+	ADC_IntSetCallBack(myADCISR);
+	ADC_DisableAutoTrigger();
+	ADC_IntEnable();
+	LCD_Init();
+	ADC_Init(ADC_CLK_PS_128);
+
+while (1)
+{
+	LCD_GoTo(1,1);
+	LCD_WriteNumWithLength(ADC_Read(DIO_A1_ANALOG),11);
+	_delay_ms(500);
+
+}
+}
+#endif
 
 #ifdef TESTING_EX_INTERRUPTS		/////////////////////
 u8 i=0;
@@ -128,30 +151,6 @@ while (1){
 }
 }
 
-#endif
-
-
-
-
-
-
-
-
-
-#ifdef TESTING_ADC					/////////////////////
-
-int main(){
-	LCD_Init();
-	ADC_Init();
-	DIO_PinMode(DIO_A1, INPUT);
-
-while (1)
-{
-	LCD_GoTo(1,1);
-	LCD_WriteInt(ADC_Read(1));
-	ADC_Read(2);
-}
-}
 #endif
 
 #ifdef TESTING_WATCHDOG_TIMER		/////////////////////
@@ -210,8 +209,12 @@ while(1){
 
 #ifdef TESTING_LCD					/////////////////////
 int main(){
-while(1){
+	LCD_Init();
 
+while (1)
+{
+	LCD_GoTo(1,1);
+	LCD_WriteStringWithLength("Ahmed ", 10);
 }
 }
 #endif

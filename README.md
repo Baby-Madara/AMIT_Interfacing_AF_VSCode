@@ -17,11 +17,9 @@ This is Embedded Systems interfacing course codes
 
 ATMega32 drivers for AMIT Kit with the following hardware (in the HAL layer). Using PlatformIO as IDE on VS Code
 
-### Date
-
 ## Date
 
-start date: 24-09-2022    &emsp; &emsp;     -    &emsp; &emsp; completed:     __-__-2022
+    start date: 24-09-2022                      -                  completed:     __-__-2022
 
 ### Aknowledgement
 

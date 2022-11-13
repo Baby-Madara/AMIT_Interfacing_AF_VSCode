@@ -77,12 +77,6 @@ void __vector_3(void) __attribute__((used)); 			//__attribute((signal)) for prev
 
 
 
-#define ISR()
-
-
-
-
-
 
 
 #endif // EX_INTERRUPTS_H_INCLUDED
