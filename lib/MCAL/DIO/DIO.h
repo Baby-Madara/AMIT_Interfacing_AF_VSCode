@@ -71,6 +71,7 @@ u8   DIO_DigitalReadPort	(u8 port					);
 u8   DIO_DigitalReadPort	(u8 port					);
 u8   DIO_DigitalReadPort	(u8 port					);
 
-
+void DIO_DisablePullUp		(void);
+void DIO_EnablePullUp		(void);
 
 #endif //DIO_INTERFACE_H_INCLUDED

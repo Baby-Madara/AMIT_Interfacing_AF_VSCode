@@ -2,32 +2,24 @@
 
 This is Embedded Systems interfacing course codes
 
-<br>
-
 ## Documentation
-
-<br>
 
 ### Author
 
 * Ahmed Farahat:
 
-  + @Baby-Madara
-  + ahmed.farahat1@msa.edu.eg
-  + ahmedfarahat1177@gmail.com
-  + +201119027639
-
-<br>
+  * @Baby-Madara
+  * ahmed.farahat1@msa.edu.eg
+  * ahmedfarahat1177@gmail.com
+  * +201119027639
 
 ### Details
 
 ATMega32 drivers for AMIT Kit with the following hardware (in the HAL layer). Using PlatformIO as IDE on VS Code
 
-<br>
+### Date
 
-## Date
-
-start date: 24-09-2022    &emsp; &emsp;     -    &emsp; &emsp; completed:     __-__-2022
+    start date: 24-09-2022            -                  completed:     __ - __ -2022
 
 ### Aknowledgement
 
@@ -35,16 +27,13 @@ learned embedded systems interfacing from different instructors but special than
 
 ### Datasheet
 
-<pre>
-- ADC                 |201
-- Interrupts          |
-- DIO                 |
-- Registers Page      ||    327
-</pre>
+    - ADC                 |201
+    - Interrupts          |
+    - DIO                 |
+    - Registers Page      ||    327
 
 ### Pinout
 
-<pre>
                           [PDIP]:
                      __________________
        (XCK/T0) PB0 |1       @       40| PA0 (ADC0)
@@ -70,26 +59,22 @@ learned embedded systems interfacing from different instructors but special than
                     |__________________|
 
         * (_PIN) means inverse logic
-</pre>
 
 ### SW Archeticture
 
-<pre>
-// ***************************************** Software Architecture ***************************************** //
- [UTILS]            ||      [APP]            |                        main.c
-                    ||      [Services]       |        structs - classes - user-defined data types - .....
-                    ||      [HAL]            |    LEDs - Buttons - SevenSegmrnt - LCD - KeyPad - ...
-        STD_Types   ||      [MCAL]           |    DIO - General_Interrupts - External_Interrupts - ADC - Timers - ...
-        BIT_MATH    ||      [MEM_MAPPING]    |                    MCU registers
-                    ||
-// ********************************************************************************************************* //
-</pre>
+      ***************************************** Software Architecture *****************************************
+      * [UTILS]      || [APP]         |                     main.c                                            *
+      *              || [Services]    |     structs - classes - user-defined data types - ...                 *
+      *              || [HAL]         | LEDs - Buttons - SevenSegmrnt - LCD - KeyPad - ...                    *
+      *    STD_Types || [MCAL]        | DIO - General_Interrupts - External_Interrupts - ADC - Timers - ...   *
+      *    BIT_MATH  || [MEM_MAPPING] |                 MCU registers                                         *
+      *********************************************************************************************************
 
 ### Warnings
 
-- LCD and SevenSegments cannot be used together
-- sevenSegments must be used with parallel programming (NO SEQUENTIAL DELAY CAN BE USED to work properly)
-- 
+* LCD and SevenSegments cannot be used together
+* sevenSegments must be used with parallel programming (NO SEQUENTIAL DELAY CAN BE USED to work properly)
+*
 
 ### Main
 

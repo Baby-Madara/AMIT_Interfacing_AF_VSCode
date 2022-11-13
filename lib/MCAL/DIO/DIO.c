@@ -21,6 +21,7 @@ void DIO_PinMode			(u8 port, u8 pin, u8 mode	){
 					}
 				}break;
 				case INPUT_PULLUP:{
+					DIO_EnablePullUp();
 					switch(port){
 						case DIO_A:{	CLEAR_BIT(DDRA, pin);	SET_BIT(PORTA, pin);}break;
 						case DIO_B:{	CLEAR_BIT(DDRB, pin);	SET_BIT(PORTB, pin);}break;
@@ -190,5 +191,15 @@ u8   DIO_DigitalReadPort		(u8 port			){
 	return val;
 
 }
+
+
+void DIO_DisablePullUp		(void){
+	SET_BIT(SFIOR, PUD);
+}
+
+void DIO_EnablePullUp		(void){
+	CLEAR_BIT(SFIOR, PUD);
+}
+
 
 

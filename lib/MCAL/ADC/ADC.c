@@ -4,7 +4,7 @@
 void ADC_Init(){
 	SET_BIT(ADCSRA, ADEN);
 
-	CLEAR_BIT(SFIOR, 4);
+	CLEAR_BIT(SFIOR, 4);		//WUUUTS THAT?!
 	
 	// setting prescalar to 128:
 	SET_BIT(ADCSRA, ADPS0);

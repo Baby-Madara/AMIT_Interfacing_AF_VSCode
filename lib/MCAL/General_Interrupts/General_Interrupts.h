@@ -75,7 +75,7 @@
 #define SPI_STC_vect			_VECTOR(12)
 #define SIG_SPI					_VECTOR(12)
 
-// * USART, Rx Complete * //
+// * USART, Rx Complete * 		//
 #define USART_RXC_vect_num		13
 #define USART_RXC_vect			_VECTOR(13)
 #define SIG_USART_RECV			_VECTOR(13)

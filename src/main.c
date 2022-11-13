@@ -4,9 +4,9 @@
  * @date:			start date: 24-09-2022			-		completed: 	__-__-2022
  * @aknowledgement:	learned embedded systems interfacing from different instructors but special thanks for Moatasem El-Sayed & Sara Abd Rabbo
  * @datasheet:
+ * 	DIO				|
  * 	ADC 			|201
  * 	Interrupts		|
- * 	DIO				|
  * 	Registers Page 	||	327
  *  
  * @pinout:					          
@@ -37,14 +37,14 @@
  *                 * (_PIN) means inverse logic
  *  
  * @sw_archeticture: 
- *  ***************************************** Software Architecture ***************************************** //
+ *  // ***************************************** Software Architecture ***************************************** //
  *	 [UTILS] 		||	[APP]			|						main.c
- * 					|| 	[Services]		|		structs - classes - user-defined data types - .....
- * 					|| 	[HAL]			|	LEDs - Buttons - SevenSegmrnt - LCD - KeyPad - ...
- * 		STD_Types	|| 	[MCAL]			|	DIO - General_Interrupts - External_Interrupts - ADC - Timers - ...
+ * 					|| 	[Services]		|		structs - classes - userDefined_data_types - .....
+ * 					|| 	[HAL]			|	LEDs - Buttons - SevenSegmrnt - LCD - KeyPad - Servo - DCMotor - ...
+ * 		STD_Types	|| 	[MCAL]			|	DIO - General_Interrupts - External_Interrupts - ADC - Timers - ICU - ...
  * 		BIT_MATH	|| 	[MEM_MAPPING]	|					MCU registers
  * 					||
- *  ********************************************************************************************************* //
+ *  // ********************************************************************************************************* //
  *  
  *  
  * @warnings:		
