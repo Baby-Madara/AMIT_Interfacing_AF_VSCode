@@ -25,7 +25,7 @@ ATMega32 drivers for AMIT Kit with the following hardware (in the HAL layer). Us
 
 <br>
 
-## Date
+### Date
 
 start date: 24-09-2022    &emsp; &emsp;     -    &emsp; &emsp; completed:     __-__-2022
 
