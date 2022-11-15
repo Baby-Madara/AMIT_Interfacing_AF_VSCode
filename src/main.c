@@ -53,7 +53,7 @@
  *  
  * @main: 			IT IS USED FOR TESTING DRIVERS. THE DRIVER YOU WANT TO TEST, UNCOMMENT "#define TESTING_DRIVER_NAME" and type the codes you want in its section, this is for ensuring no loss of old trials
  * 
-*/
+ */
 
 
 #include <util/delay.h>
@@ -78,8 +78,8 @@
 
 // ************   uncomment ONLY the line corresponding to the driver you test   ************ //
 // #define TESTING_WATCHDOG_TIMER
-#define TESTING_ADC
-// #define TESTING_TIMERS
+// #define TESTING_ADC
+#define TESTING_TIMERS
 // #define TESTING_EX_INTERRUPTS
 //////
 // #define TESTING_SERVO
@@ -92,6 +92,23 @@
 // #define TESTING_BIT_MATH
 //////
 // #define GENERAL_TEST
+
+
+
+
+#ifdef TESTING_TIMERS				/////////////////////
+int main(){
+	// volatile u8 i=0;
+	Timers_T0_Init(TIMERS_T0_CLK_PS_1024, TIMERS_T0_MODE_FASTPWM, TIMERS_T0_OCPIN_NON_INVERTING_MODE);
+while (1)
+{
+	Timers_T0_FastPWM_B3(0);	//LED blinks slightly (i think )
+
+}
+}
+#endif
+
+
 
 
 
@@ -165,18 +182,6 @@ while(1){
 }
 #endif
 
-#ifdef TESTING_TIMERS				/////////////////////
-int main(){
-	// prescalar 1024
-	TCCR0 = 0x05; //timer counter ctrl register
-	volatile u8 timer_ctr =0;
-while (1)
-{
-	
-}
-}
-#endif
-
 #ifdef TESTING_SERVO				/////////////////////
 int main(){
 while(1){
@@ -188,11 +193,11 @@ while(1){
 #ifdef TESTING_SEVEN_SEGMENTS		/////////////////////
 int main(){
 
-	SEG_voidInit();
+	SEG_Init();
 	volatile u8 i=0;
 while (1)
 {
-	SEG_voidDisplay(15);
+	SEG_Display(9876);
 	// _delay_ms(1000);
 	++i;
 }
@@ -201,7 +206,16 @@ while (1)
 
 #ifdef TESTING_KEYPAD				/////////////////////
 int main(){
+	LCD_Init();
+	KeyPad_Init();
+	u8 buf =0;
 while(1){
+	LCD_GoTo(1,2);
+	LCD_WriteData('_');
+	buf = KeyPad_GetRead();
+	if (buf != 0){
+		LCD_WriteData(buf);
+	}
 
 }
 }
@@ -209,12 +223,15 @@ while(1){
 
 #ifdef TESTING_LCD					/////////////////////
 int main(){
+	volatile u8 i=0;
 	LCD_Init();
 
 while (1)
 {
-	LCD_GoTo(1,1);
-	LCD_WriteStringWithLength("Ahmed ", 10);
+	// LCD_GoTo(1,1);
+	LCD_WriteInt(LCD_cursorTracer);
+	_delay_ms(500);
+	// i++;
 }
 }
 #endif

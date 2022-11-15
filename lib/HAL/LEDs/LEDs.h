@@ -4,10 +4,9 @@
 #include <DIO/DIO.h>
 
 
-#define LED0 	DIO_C2
-#define LED1 	DIO_C7
-#define LED2 	DIO_D3
-#define BUZZER 	DIO_A3
+#include "LEDs_Config.h"
+
+
 
 
 void LED_InitLED(	u8 LEDPort, u8 LEDPin			);

@@ -11,14 +11,9 @@
 #include "BitMath.h"
 #include <util/delay.h>
 
-#define LCD_RS	DIO_B1
-#define LCD_RW	DIO_B2
-#define LCD_En	DIO_B3
+#include "LCD_Config.h"
 
-#define LCD_D4 	DIO_A4
-#define LCD_D5 	DIO_A5
-#define LCD_D6 	DIO_A6
-#define LCD_D7 	DIO_A7
+
 
 // N 0 --> 1line disp
 // F 0 --> 5*7 dot font
@@ -45,7 +40,7 @@ typedef enum LCD_cmdSet{
 } LCD_cmdSet;
 LCD_cmdSet LCD_Commands;
 
-extern u8 cursorTracer;
+extern u8 LCD_cursorTracer;
 
 
 
