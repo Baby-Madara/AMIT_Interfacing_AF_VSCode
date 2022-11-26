@@ -134,7 +134,7 @@ void GI_Disable();
 
 
 #define ISR(vector, ...)                                   \
-	void vector (void) __attribute__ ((used)) __VA_ARGS__; \
+	void vector (void) __attribute__ ((used)) __attribute__ ((signal)) __VA_ARGS__; \
 	void vector (void)
 
 // #define ISR(vector, ...)            \ // 	void vector (void) __attribute__ ((signal,__INTR_ATTRS)) __VA_ARGS__; \ // 	void vector (void)

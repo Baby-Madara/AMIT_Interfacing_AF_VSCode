@@ -24,12 +24,6 @@
 
 // ***************************  Timer0  *************************** //
 
-// in TCCR0: [ WGM00 - WGM01 ]
-#define TIMERS_T0_MODE_NORMAL	0
-#define TIMERS_T0_MODE_PCPWM	1
-#define TIMERS_T0_MODE_CTC		2	//clear timer on compare match (for wave generation)
-#define TIMERS_T0_MODE_FASTPWM	3
-
 // in TCCR0: [ CS02:0 ] Clock select & prescalers
 #define TIMERS_T0_CLK_DISABLE			0
 #define TIMERS_T0_CLK_PS_1				1
@@ -40,6 +34,12 @@
 #define TIMERS_T0_COUNT_EXT_ON_FALLING	6
 #define TIMERS_T0_COUNT_EXT_ON_RISING	7
 
+// in TCCR0: [ WGM00 - WGM01 ]
+#define TIMERS_T0_MODE_NORMAL	0
+#define TIMERS_T0_MODE_PCPWM	1
+#define TIMERS_T0_MODE_CTC		2	//clear timer on compare match (for wave generation)
+#define TIMERS_T0_MODE_FASTPWM	3
+
 // in TCCR0: [ COM00:1 ] Compare output modes
 #define TIMERS_T0_OCPIN_DISCONNECT 				0
 #define TIMERS_T0_OCPIN_TOGGLE_ON_COMP_MTCH 	1 	//doesnt work while PWM Modes
@@ -48,7 +48,7 @@
 
 
 
-void Timers_T0_Init				(u8 ps, u8 mode, u8 outputCompare);
+void Timers_T0_Init				(u8 ps, u8 mode, u8 outputCompareMode, u8 OutputCompareVal);
 void Timers_T0_Disable			();
 void Timers_T0_CompMtchSetCallBack		(void (*ptr)(void));
 void Timers_T0_OverFlowSetCallBack		(void (*ptr)(void));

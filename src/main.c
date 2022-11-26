@@ -97,24 +97,24 @@
 
 u8 i=0;
 
-ISR(TIMER0_OC_vect){
-	LED_ToggleLED(LED2);
+ISR(TIMER0_COMP_vect){
+	LED_ToggleLED(LED0);
 	Timers_T0_IntCompMtchEnable();
 }
 
 
 int main(){
 
-	LED_InitLED(LED2);
-	// Timers_T0_Init(TIMERS_T0_CLK_PS_1024, TIMERS_T0_MODE_NORMAL, TIMERS_T0_OCPIN_NON_INVERTING_MODE);
-	Timers_T0_Init(TIMERS_T0_CLK_PS_1024, TIMERS_T0_MODE_FASTPWM, TIMERS_T0_OCPIN_DISCONNECT);
-	Timers_T0_IntCompMtchEnable();
+	LCD_Init();	
+	LED_InitLED(LED0);
 	
+	// Timers_T0_Init(TIMERS_T0_CLK_PS_1024, TIMERS_T0_MODE_FASTPWM, TIMERS_T0_OCPIN_NON_INVERTING_MODE, 127);
+	Timers_T0_Init(TIMERS_T0_CLK_PS_1024, TIMERS_T0_MODE_CTC, TIMERS_T0_OCPIN_DISCONNECT, 255);
+	Timers_T0_IntCompMtchEnable();
 
 while (1)
 {
-	// Timers_T0_FastPWM_B3(0);	//LED blinks slightly (i think )
-	
+	LCD_GoTo(1,1); LCD_WriteInt(555);
 
 
 }
@@ -175,7 +175,7 @@ int main(){
 
 
 while (1){
-	LED_ToggleLED(LED1); 	_delay_ms(100);
+	LED_ToggleLED(LED1); 	_delay_ms(1000);
 
 }
 }
