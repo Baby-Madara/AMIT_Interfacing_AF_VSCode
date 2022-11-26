@@ -1,12 +1,8 @@
 #ifndef SERVO_H_INCLUDED
 #define SERVO_H_INCLUDED
 
-#include <Timers/Timers.h>
-#include <DIO/DIO.h>
-
-#include <STD_Types.h>
-#include <BitMath.h>
-
+#include "../../MCAL/Timers/Timers.h"
+#include "../../MCAL/DIO/DIO.h"
 
 #include "Servo_Config.h"
 

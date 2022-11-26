@@ -1,9 +1,10 @@
 #ifndef DIO_INTERFACE_H_INCLUDED
 #define DIO_INTERFACE_H_INCLUDED
 
-#include <mem_map.h>
-#include <STD_Types.h>
-#include <BitMath.h>
+
+#include "../../Memory_map/mem_map.h"
+#include "../../UTILS/BitMath.h"
+#include "../../UTILS/STD_Types.h"
 
 
 

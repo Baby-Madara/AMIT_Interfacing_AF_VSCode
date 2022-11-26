@@ -1,13 +1,11 @@
 #ifndef EX_INTERRUPTS_H_INCLUDED
 #define EX_INTERRUPTS_H_INCLUDED
 
-#include <mem_map.h>
+#include "../General_Interrupts/General_Interrupts.h"
 
-#include <General_Interrupts/General_Interrupts.h>
-
-#include "Ex_Interrupts.h"
-#include "STD_Types.h"
-#include "BitMath.h"
+#include "../../UTILS/BitMath.h"
+#include "../../UTILS/STD_Types.h"
+#include "../../Memory_map/mem_map.h"
 
 
 #define EX_INT0_LOW		0

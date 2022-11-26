@@ -1,7 +1,7 @@
 #ifndef BUTTONS_H_INCLUDED
 #define BUTTONS_H_INCLUDED
 
-#include <DIO/DIO.h>
+#include "../../MCAL/DIO/DIO.h"
 #include "Buttons_Config.h"
 
 

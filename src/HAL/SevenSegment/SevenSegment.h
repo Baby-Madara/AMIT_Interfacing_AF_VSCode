@@ -1,9 +1,9 @@
 #ifndef SEVENSEGMENT_H_INCLUDED
 #define SEVENSEGMENT_H_INCLUDED
 
-#include <DIO/DIO.h>
+#include "../../MCAL/DIO/DIO.h"
 
-#include "util/delay.h"
+#include <util/delay.h>
 
 #include "SevenSegment_Config.h"
 

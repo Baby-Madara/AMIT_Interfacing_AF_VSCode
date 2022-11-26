@@ -1,7 +1,7 @@
 #ifndef LEDS_H_INCLUDED
 #define LEDS_H_INCLUDED
 
-#include <DIO/DIO.h>
+#include "../../MCAL/DIO/DIO.h"
 
 
 #include "LEDs_Config.h"

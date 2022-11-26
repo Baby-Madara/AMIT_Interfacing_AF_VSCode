@@ -2,10 +2,9 @@
 #define GENERAL_INTERRUPTS_H_INCLUDED
 
 
-
-#include <STD_Types.h>
-#include <BitMath.h>
-#include <mem_map.h>
+#include "../../UTILS/BitMath.h"
+#include "../../UTILS/STD_Types.h"
+#include "../../Memory_map/mem_map.h"
 
 // #include <avr/interrupt.h>
 
@@ -134,7 +133,7 @@ void GI_Disable();
 
 
 
-#define ISR(vector, ...)            \
+#define ISR(vector, ...)                                   \
 	void vector (void) __attribute__ ((used)) __VA_ARGS__; \
 	void vector (void)
 

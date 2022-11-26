@@ -3,47 +3,47 @@
  * @details			ATMega32 drivers for AMIT Kit with the following hardware (in the HAL layer). Using PlatformIO as IDE on VS Code
  * @date:			start date: 24-09-2022			-		completed: 	__-__-2022
  * @aknowledgement:	learned embedded systems interfacing from different instructors but special thanks for Moatasem El-Sayed & Sara Abd Rabbo
- * @datasheet:
+ * @datasheet:		for any technical details, refer to datasheet: https://ww1.microchip.com/downloads/en/DeviceDoc/doc2503.pdf
  * 	DIO				|
  * 	ADC 			|201
  * 	Interrupts		|
  * 	Registers Page 	||	327
  *  
  * @pinout:					          
- *                            [PDIP]:
- *                      __________________
- *        (XCK/T0) PB0 |1       @       40| PA0 (ADC0)
- *            (T1) PB1 |2               39| PA1 (ADC1)
- *     (INT2/AIN0) PB2 |3               38| PA2 (ADC2)
- *      (OC0/AIN1) PB3 |4               37| PA3 (ADC3)
- *           (_SS) PB4 |5               36| PA4 (ADC4)
- *          (MOSI) PB5 |6               35| PA5 (ADC5)
- *          (MISO) PB6 |7               34| PA6 (ADC6)
- *           (SCK) PB7 |8               33| PA7 (ADC7)
- *              _RESET |9               32| AREF
- *                 VCC |10   ATMega32   31| GND
- *                 GND |11              30| AVCC
- *               XTAL2 |12              29| PC7 (TOSC2)
- *               XTAL1 |13              28| PC6 (TOSC1)
- *           (RXD) PD0 |14              27| PC5 (TDI)
- *           (TXD) PD1 |15              26| PC4 (TDO)
- *          (INT0) PD2 |16              25| PC3 (TMS)
- *          (INT1) PD3 |17              24| PC2 (TCK)
- *          (OC1B) PD4 |18              23| PC1 (SDA)
- *          (OC1A) PD5 |19              22| PC0 (SCL)
- *          (ICP1) PD6 |20              21| PD7 (OC2)
- *                     |__________________|
- *  
- *                 * (_PIN) means inverse logic
+ *                                      [PDIP]:
+ *                                 __________________
+ *      Btn0         (XCK/T0) PB0 |1       @       40| PA0 (ADC0)       N/C
+ *      LCD_RS           (T1) PB1 |2               39| PA1 (ADC1)       Pot
+ *      LCD_RW    (INT2/AIN0) PB2 |3               38| PA2 (ADC2)       Relay
+ *      LCD_EN     (OC0/AIN1) PB3 |4               37| PA3 (ADC3)       Buzzer
+ *      SS              (_SS) PB4 |5               36| PA4 (ADC4)       LCD_D4
+ *      MOSI           (MOSI) PB5 |6               35| PA5 (ADC5)       LCD_D5
+ *      MISO           (MISO) PB6 |7               34| PA6 (ADC6)       LCD_D6
+ *      SCK             (SCK) PB7 |8               33| PA7 (ADC7)       LCD_D7
+ *                         _RESET |9               32| AREF
+ *                            VCC |10   ATMega32   31| GND
+ *                            GND |11              30| AVCC
+ *                          XTAL2 |12              29| PC7 (TOSC2)      LED1
+ *                          XTAL1 |13              28| PC6 (TOSC1)      H_A4
+ *       RX             (RXD) PD0 |14              27| PC5 (TDI)        H_A3
+ *       TX             (TXD) PD1 |15              26| PC4 (TDO)        H_A2
+ *       Btn2          (INT0) PD2 |16              25| PC3 (TMS)        H_A1
+ *       LED2          (INT1) PD3 |17              24| PC2 (TCK)        LED0
+ *       H_En1         (OC1B) PD4 |18              23| PC1 (SDA)        SDA
+ *       H_En2         (OC1A) PD5 |19              22| PC0 (SCL)        SCL
+ *       Btn1          (ICP1) PD6 |20              21| PD7 (OC2)        Servo
+ *                                |__________________|
+ *                                                                           
+ *                            * (_PIN) means inverse logic
  *  
  * @sw_archeticture: 
- *     ***************************************** Software Architecture *****************************************
- *     * [UTILS]      || [APP]         |                     main.c                                            *
- *     *              || [Services]    |     structs - classes - user-defined data types - ...                 *
- *     *              || [HAL]         | LEDs - Buttons - SevenSegmrnt - LCD - KeyPad - ...                    *
- *     *    STD_Types || [MCAL]        | DIO - General_Interrupts - External_Interrupts - ADC - Timers - ...   *
- *     *    BIT_MATH  || [MEM_MAPPING] |                 MCU registers                                         *
- *     *********************************************************************************************************
+ *     **************************************** Software Architecture ****************************************
+ *     * [UTILS]    || [APP]         |                     main.c                                            *
+ *     *            || [Services]    |     structs - classes - user-defined data types - ...                 *
+ *     *            || [HAL]         | LEDs - Buttons - SevenSegmrnt - LCD - KeyPad - ...                    *
+ *     *  STD_Types || [MCAL]        | DIO - General_Interrupts - External_Interrupts - ADC - Timers - ...   *
+ *     *  BIT_MATH  || [MEM_MAPPING] |                 MCU registers                                         *
+ *     *******************************************************************************************************
  *  
  * @warnings:		
  * 					-LCD and SevenSegments cannot be used together
@@ -58,22 +58,19 @@
 
 #include <util/delay.h>
 
-#include <mem_map.h>
-#include <BitMath.h>
-#include <DIO/DIO.h>
-#include <LEDs/LEDs.h>
-#include <Buttons/Buttons.h>
-
-#include <LCD/LCD.h>
-#include <KeyPad/KeyPad.h>
-#include <SevenSegment/SevenSegment.h>
-#include <Servo/Servo.h>
-
-
-#include <Ex_Interrupts/Ex_Interrupts.h>
-#include <ADC/ADC.h>
-#include <Timers/Timers.h>
-#include <WatchDog_Timer/WatchDog_Timer.h>
+#include "Memory_map/mem_map.h"
+#include "UTILS/BitMath.h"
+#include "MCAL/DIO/DIO.h"
+#include "HAL/LEDs/LEDs.h"
+#include "HAL/Buttons/Buttons.h"
+#include "HAL/LCD/LCD.h"
+#include "HAL/KeyPad/KeyPad.h"
+#include "HAL/SevenSegment/SevenSegment.h"
+#include "HAL/Servo/Servo.h"
+#include "MCAL/Ex_Interrupts/Ex_Interrupts.h"
+#include "MCAL/ADC/ADC.h"
+#include "MCAL/Timers/Timers.h"
+#include "MCAL/WatchDog_Timer/WatchDog_Timer.h"
 
 
 // ************   uncomment ONLY the line corresponding to the driver you test   ************ //
@@ -97,12 +94,28 @@
 
 
 #ifdef TESTING_TIMERS				/////////////////////
+
+u8 i=0;
+
+ISR(TIMER0_OC_vect){
+	LED_ToggleLED(LED2);
+	Timers_T0_IntCompMtchEnable();
+}
+
+
 int main(){
-	// volatile u8 i=0;
-	Timers_T0_Init(TIMERS_T0_CLK_PS_1024, TIMERS_T0_MODE_FASTPWM, TIMERS_T0_OCPIN_NON_INVERTING_MODE);
+
+	LED_InitLED(LED2);
+	// Timers_T0_Init(TIMERS_T0_CLK_PS_1024, TIMERS_T0_MODE_NORMAL, TIMERS_T0_OCPIN_NON_INVERTING_MODE);
+	Timers_T0_Init(TIMERS_T0_CLK_PS_1024, TIMERS_T0_MODE_FASTPWM, TIMERS_T0_OCPIN_DISCONNECT);
+	Timers_T0_IntCompMtchEnable();
+	
+
 while (1)
 {
-	Timers_T0_FastPWM_B3(0);	//LED blinks slightly (i think )
+	// Timers_T0_FastPWM_B3(0);	//LED blinks slightly (i think )
+	
+
 
 }
 }
@@ -141,10 +154,9 @@ while (1)
 #endif
 
 #ifdef TESTING_EX_INTERRUPTS		/////////////////////
-u8 i=0;
 
 void myISR0(void){	 
-	EX_Int0_Disable();
+	// EX_Int0_Disable();
 	LED_ToggleLED(LED0);		
 	EX_Int0_Enable();
 }

@@ -24,9 +24,7 @@ void Timers_T0_Init				(u8 ps, u8 mode, u8 outputCompare){
 	WRITE_BIT(TCCR0, WGM00	,	GET_BIT(mode, 0)	);
 
 	// outputCompare
-	if( !TIMERS_T0_OCPIN_DISCONNECT ){
-		SET_BIT(DDRB, PIN_3);
-	}
+	if( !TIMERS_T0_OCPIN_DISCONNECT ){		SET_BIT(DDRB, PIN_3);	}
 	WRITE_BIT(TCCR0, COM01	,	GET_BIT(outputCompare, 1)	),
 	WRITE_BIT(TCCR0, COM00	,	GET_BIT(outputCompare, 0)	);
 
@@ -47,6 +45,54 @@ void Timers_T0_FastPWM_B3		(u8 outCompVal){
 
 
 
+
+
+
+void Timers_T0_CompMtchSetCallBack		(void (*ptr)(void)){
+}
+
+
+void Timers_T0_OverFlowSetCallBack		(void (*ptr)(void)){
+
+}
+
+
+void Timers_T0_IntCompMtchEnable		(){
+	GI_Enable();
+	SET_BIT(TIMSK, OCIE0);
+	SET_BIT(TIFR, OCF0);
+
+}
+
+
+void Timers_T0_IntCompMtchDisable		(){
+
+}
+
+
+void Timers_T0_IntOverFlowEnable		(){
+
+}
+
+
+void Timers_T0_IntOverFlowDisable		(){
+
+}
+
+
+u8   Timers_T0_ReturnCurrentTime		(){
+
+}
+
+
+void Timers_T0_phCorrectPWM_B3	(u8 outCompVal){
+
+}
+
+
+void Timers_T0_waveGenerate_B3	(u8 outCompVal){
+
+}
 
 
 

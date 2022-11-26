@@ -1,10 +1,11 @@
 #ifndef TIMER_H_INCLUDED
 #define TIMER_H_INCLUDED
 
-#include <mem_map.h>
+#include "../General_Interrupts/General_Interrupts.h"
 
-#include <STD_Types.h>
-#include <BitMath.h>
+#include "../../UTILS/BitMath.h"
+#include "../../UTILS/STD_Types.h"
+#include "../../Memory_map/mem_map.h"
 
 
 
@@ -49,15 +50,22 @@
 
 void Timers_T0_Init				(u8 ps, u8 mode, u8 outputCompare);
 void Timers_T0_Disable			();
-void Timers_T0_SetCallBack		(void (*ptr)(void));
-void Timers_T0_IntEnable		();
-void Timers_T0_IntDisable		();
-u8   Timers_T0_ReturnCurrentTime();
+void Timers_T0_CompMtchSetCallBack		(void (*ptr)(void));
+void Timers_T0_OverFlowSetCallBack		(void (*ptr)(void));
+void Timers_T0_IntCompMtchEnable		();
+void Timers_T0_IntCompMtchDisable		();
+void Timers_T0_IntOverFlowEnable		();
+void Timers_T0_IntOverFlowDisable		();
+u8   Timers_T0_ReturnCurrentTime		();
+
 void Timers_T0_FastPWM_B3		(u8 outCompVal);
-void Timers_T0_phCorrectPWM_B3	(u16 onTime, 	u16 periodicTime, u8 ps);
-void Timers_T0_waveGenerate_B3	(u16 freq, 		u8 ps);
+void Timers_T0_phCorrectPWM_B3	(u8 outCompVal);
+void Timers_T0_waveGenerate_B3	(u8 outCompVal);
 
 
+// TIMER0_OVF_vect;  _vector_11;
+// #define ;
+// TIMER0_COMP_vect;
 
 
 // ***************************  Timer1  *************************** //

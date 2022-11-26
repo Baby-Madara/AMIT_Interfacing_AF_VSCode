@@ -1,9 +1,12 @@
 #ifndef WATCHDOG_TIMER_H_INCLUDED
 #define WATCHDOG_TIMER_H_INCLUDED
 
-#include <mem_map.h>
-#include <STD_Types.h>
-#include <BitMath.h>
+#include "../General_Interrupts/General_Interrupts.h"
+
+#include "../../UTILS/BitMath.h"
+#include "../../UTILS/STD_Types.h"
+#include "../../Memory_map/mem_map.h"
+
 
 #define WatchDog_PS_16K			0
 #define WatchDog_PS_32K			1
